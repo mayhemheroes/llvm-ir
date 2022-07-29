@@ -1,0 +1,27 @@
+[package]
+name = "llvm-ir-fuzz"
+version = "0.0.0"
+authors = ["Automatically generated"]
+publish = false
+edition = "2018"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+memfd = "0.6.0"
+
+[dependencies.llvm-ir]
+path = ".."
+features = ["llvm-13"]
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "parse_bc"
+path = "fuzz_targets/parse_bc.rs"
+test = false
+doc = false
